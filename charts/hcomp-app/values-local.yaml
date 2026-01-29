@@ -1,7 +1,7 @@
 # Local Minikube overrides. Use with valueFiles when testing against a local image.
 # Build and load: docker build -t hcomp-app:latest . && minikube image load hcomp-app:latest
 replicaCount: 1
-version: "0.2.0-local"
+version: "0.3.0-local"
 image:
   repository: hcomp-app
   tag: latest
