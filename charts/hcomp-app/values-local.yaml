@@ -1,11 +1,7 @@
-# Local Minikube overrides. Use with valueFiles when testing against a local image.
-# Build and load: docker build -t hcomp-app:latest . && minikube image load hcomp-app:latest
+# Local Minikube overrides. image.repository and image.tag come from values.yaml (GHCR).
 replicaCount: 1
 version: "0.3.0-local"
-image:
-  repository: hcomp-app
-  tag: latest
-  pullPolicy: Never
+image: {}
 resources:
   limits:
     cpu: 100m
