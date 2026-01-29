@@ -1,8 +1,8 @@
 # Staging overrides. Use with valueFiles: [values.yaml, values-stg.yaml]
+# image.tag comes from values.yaml (updated by CI after each push to main)
 replicaCount: 1
 version: "0.1.0-stg"
-image:
-  tag: latest
+image: {}
 resources:
   limits:
     cpu: 100m

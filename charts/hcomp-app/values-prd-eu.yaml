@@ -1,8 +1,8 @@
 # Production EU overrides. Use with valueFiles: [values.yaml, values-prd-eu.yaml]
+# image.tag comes from values.yaml (updated by CI)
 replicaCount: 2
 version: "0.1.0-prd-eu"
-image:
-  tag: latest
+image: {}
 resources:
   limits:
     cpu: 200m

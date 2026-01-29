@@ -122,9 +122,17 @@ kubectl port-forward -n argocd svc/argocd-server 8443:443
 
 ## CI (GitHub Actions)
 
-On push to `main`, the workflow in `.github/workflows/ci.yaml` builds the image and pushes it to **GitHub Container Registry** as `ghcr.io/<owner>/hcomp-app` (tags: `latest`, git SHA).
+On push to `main`, the workflow in `.github/workflows/ci.yaml`:
 
-To use that image instead of a local one, point your Helm values (or ArgoCD `valueFiles`) at that image and tag.
+1. Builds the image and pushes it to **GitHub Container Registry** as `ghcr.io/<owner>/hcomp-app` (tags: `latest`, git SHA).
+2. Updates `charts/hcomp-app/values.yaml` with the new image repository and tag (short SHA), then commits and pushes.
+
+**How ArgoCD picks up the new image and rolls:**
+
+- ArgoCD watches the repo (e.g. `main`). When CI pushes the commit that updates `values.yaml`, ArgoCD sees the diff and syncs.
+- The sync applies the updated Helm values (new `image.tag`), so the Deployment gets a new image and Kubernetes rolls out the new pods.
+- If auto-sync is enabled (as in the provided Applications), the rollout happens within a few minutes. Otherwise run: `argocd app sync <app-name>` (e.g. `hcomp-app-local`).
+- To roll back, revert the image-tag commit in Git and sync again, or change `image.tag` in `values.yaml` and push.
 
 ---
 
