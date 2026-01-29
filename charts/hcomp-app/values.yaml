@@ -4,8 +4,8 @@ replicaCount: 1
 
 image:
   # Full image ref without tag, e.g. ghcr.io/owner/hcomp-app. Override per env.
-  repository: ghcr.io/owner/hcomp-app
-  tag: latest
+  repository: ghcr.io/binternet/hcomp-app
+  tag: 723e144
   pullPolicy: IfNotPresent
 
 service:
