@@ -1,6 +1,6 @@
 # Local Minikube overrides. image.repository and image.tag come from values.yaml (GHCR).
 replicaCount: 1
-version: "0.3.0-local"
+version: "0.4.0-local"
 image: {}
 resources:
   limits:
