@@ -3,7 +3,7 @@ const http = require('http');
 const PORT = process.env.PORT || 8080;
 const VERSION = process.env.VERSION || 'dev-local';
 
-const PHRASES = ['I Love Sabich', 'Kama Lasim Bapita?', 'Ein al falafel'];
+const PHRASES = ['I Love Sabich', 'Kama Lasim Bapita?', 'Ein al falafel', 'And Also Tchina!'];
 
 function randomPhrase() {
   return PHRASES[Math.floor(Math.random() * PHRASES.length)];
