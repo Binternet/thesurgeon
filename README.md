@@ -90,7 +90,7 @@ minikube image load hcomp-app:latest
    ```bash
    kubectl apply -f argocd/applications/hcomp-app-local.yaml
    ```
-   To use the **staging** Application (`hcomp-app-staging`) instead, create the `staging` branch first (`./scripts/ensure-staging-branch.sh`), then `kubectl apply -f argocd/applications/hcomp-app-staging.yaml`.
+   To use the **staging** Application (`hcomp-app-staging`) instead, ensure the `staging` branch exists (e.g. `git checkout -b staging && git push -u origin staging`), then `kubectl apply -f argocd/applications/hcomp-app-staging.yaml`.
 
 4. **Sync**  
    ArgoCD will create the `hcomp-app` namespace and deploy the chart with `values-local.yaml`.  
@@ -147,7 +147,6 @@ On push to `main`, the workflow in `.github/workflows/ci.yaml`:
 │   ├── values-prd-eu.yaml
 │   └── values-prd-us.yaml
 ├── argocd/applications/ # ArgoCD Application manifests
-├── scripts/             # ensure-staging-branch.sh, etc.
 ├── .github/workflows/   # CI (build & push image)
 ├── DESIGN.md
 └── README.md
@@ -168,13 +167,7 @@ All ArgoCD Applications use the **same repo** (`repoURL`) but different **branch
 
 Staging tracks `staging`; local and production track `main`. Use tags (e.g. `v1.2.3`) or other branch names if you prefer.
 
-**Staging branch:** The staging Application (`hcomp-app-staging`) watches the `staging` branch and uses `values-stg.yaml`. Create and push it so ArgoCD has something to watch:
-
-```bash
-./scripts/ensure-staging-branch.sh
-```
-
-That creates `staging` from your current branch (including `charts/hcomp-app` and `values-stg.yaml`) and pushes it. Ensure `staging` exists and contains the chart before applying the staging Application.
+**Staging branch:** The staging Application (`hcomp-app-staging`) watches the `staging` branch and uses `values-stg.yaml`. Ensure the `staging` branch exists and contains the chart (e.g. create from `main`: `git checkout -b staging && git push -u origin staging`) before applying the staging Application.
 
 ---
 
