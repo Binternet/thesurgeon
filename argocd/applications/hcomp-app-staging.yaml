@@ -4,14 +4,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: hcomp-app
+  name: hcomp-app-staging
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://github.com/YOUR_ORG/hcomp.git
+    repoURL: https://github.com/Binternet/thesurgeon.git
     targetRevision: staging
     path: charts/hcomp-app
     helm:

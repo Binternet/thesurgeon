@@ -83,14 +83,14 @@ minikube image load hcomp-app:latest
 2. **Use the local ArgoCD Application**  
    Edit `argocd/applications/hcomp-app-local.yaml` and set `repoURL` to your repo, e.g.:
    ```yaml
-   repoURL: https://github.com/YOUR_GITHUB_USER/hcomp.git
+   repoURL: https://github.com/Binternet/thesurgeon.git
    ```
 
 3. **Apply the Application**
    ```bash
    kubectl apply -f argocd/applications/hcomp-app-local.yaml
    ```
-   To use the **staging** Application (`hcomp-app`) instead, create the `staging` branch first (`./scripts/ensure-staging-branch.sh`), then `kubectl apply -f argocd/applications/hcomp-app.yaml`.
+   To use the **staging** Application (`hcomp-app-staging`) instead, create the `staging` branch first (`./scripts/ensure-staging-branch.sh`), then `kubectl apply -f argocd/applications/hcomp-app-staging.yaml`.
 
 4. **Sync**  
    ArgoCD will create the `hcomp-app` namespace and deploy the chart with `values-local.yaml`.  
@@ -154,13 +154,13 @@ All ArgoCD Applications use the **same repo** (`repoURL`) but different **branch
 | Application | Branch | Value files |
 |-------------|--------|-------------|
 | `hcomp-app-local` | `main` | values-local |
-| `hcomp-app` (staging) | `staging` | values-stg |
+| `hcomp-app-staging` | `staging` | values-stg |
 | `hcomp-app-prd-eu` | `main` | values-prd-eu |
 | `hcomp-app-prd-us` | `main` | values-prd-us |
 
 Staging tracks `staging`; local and production track `main`. Use tags (e.g. `v1.2.3`) or other branch names if you prefer.
 
-**Staging branch:** The staging Application (`hcomp-app`) watches the `staging` branch and uses `values-stg.yaml`. Create and push it so ArgoCD has something to watch:
+**Staging branch:** The staging Application (`hcomp-app-staging`) watches the `staging` branch and uses `values-stg.yaml`. Create and push it so ArgoCD has something to watch:
 
 ```bash
 ./scripts/ensure-staging-branch.sh

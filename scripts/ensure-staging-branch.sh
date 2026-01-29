@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Create and push the staging branch so ArgoCD can watch it.
-# The staging Application (hcomp-app) uses targetRevision: staging and values-stg.yaml.
+# The staging Application (hcomp-app-staging) uses targetRevision: staging and values-stg.yaml.
 # Run from repo root: ./scripts/ensure-staging-branch.sh
 
 set -e
