@@ -35,5 +35,6 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Full image reference
 */}}
 {{- define "hcomp-app.image" -}}
-{{- printf "%s:%s" .Values.image.repository (.Values.image.tag | default .Chart.AppVersion) }}
+{{- $tag := .Values.image.tag | default .Chart.AppVersion | toString }}
+{{- printf "%s:%s" .Values.image.repository $tag }}
 {{- end }}
