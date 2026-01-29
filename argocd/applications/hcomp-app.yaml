@@ -1,0 +1,29 @@
+# ArgoCD Application for hcomp-app — Staging.
+# Same repo as other envs; this one tracks the staging branch.
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hcomp-app
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/YOUR_ORG/hcomp.git
+    targetRevision: staging
+    path: charts/hcomp-app
+    helm:
+      valueFiles:
+        - values.yaml
+        - values-stg.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hcomp-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

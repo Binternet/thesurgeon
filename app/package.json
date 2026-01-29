@@ -1,0 +1,12 @@
+{
+  "name": "hcomp-app",
+  "version": "1.0.0",
+  "description": "Minimal app for GitOps POC — /version and /health endpoints",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,29 @@
+# ArgoCD Application for hcomp-app — local Minikube testing.
+# Same repo as other envs; this one tracks main. Build image, load into minikube, then apply.
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hcomp-app-local
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/YOUR_ORG/hcomp.git
+    targetRevision: main
+    path: charts/hcomp-app
+    helm:
+      valueFiles:
+        - values.yaml
+        - values-local.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hcomp-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

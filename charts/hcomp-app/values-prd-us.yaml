@@ -1,0 +1,12 @@
+# Production US overrides. Use with valueFiles: [values.yaml, values-prd-us.yaml]
+replicaCount: 2
+version: "0.1.0-prd-us"
+image:
+  tag: latest
+resources:
+  limits:
+    cpu: 200m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 64Mi

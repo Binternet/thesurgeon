@@ -1,0 +1,9 @@
+apiVersion: v2
+name: hcomp-app
+description: Minimal app for GitOps POC — /version and /health endpoints
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - gitops
+  - poc

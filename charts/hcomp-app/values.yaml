@@ -1,0 +1,25 @@
+# Default values for hcomp-app. Override per environment via valueFiles or valuesObject.
+
+replicaCount: 1
+
+image:
+  # Full image ref without tag, e.g. ghcr.io/owner/hcomp-app. Override per env.
+  repository: ghcr.io/owner/hcomp-app
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+# Deployed version reported by /version and /health. Set per environment.
+version: "0.1.0"
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 64Mi
+  requests:
+    cpu: 50m
+    memory: 32Mi

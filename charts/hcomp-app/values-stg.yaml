@@ -1,0 +1,9 @@
+# Staging overrides. Use with valueFiles: [values.yaml, values-stg.yaml]
+replicaCount: 1
+version: "0.1.0-stg"
+image:
+  tag: latest
+resources:
+  limits:
+    cpu: 100m
+    memory: 64Mi
